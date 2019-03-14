@@ -27,12 +27,8 @@ WORKDIR /root/nginx
 RUN NGINX_CONFIGURE_ARGUMENTS=`nginx -V 2>&1 | grep 'configure arguments:' | cut -d\  -f3-` && \
     NGINX_MODULES_PATH=`nginx -V 2>&1 | gawk 'match($0,/--modules-path=(\S+?)/,a) {print a[1]}'` && \
     eval "./configure $NGINX_CONFIGURE_ARGUMENTS --add-dynamic-module=/tmp/libnginx-mod-redirectionio-master" && \
-    make -j8 modules && \
+    make -j modules && \
     cp objs/ngx_http_redirectionio_module.so $NGINX_MODULES_PATH/ngx_http_redirectionio_module.so
 
 # Configuration
-COPY etc/nginx/nginx.conf      /etc/nginx/nginx.conf
-
-EXPOSE 80
-
-CMD ["nginx"]
+COPY etc /etc

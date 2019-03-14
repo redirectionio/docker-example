@@ -2,7 +2,7 @@ FROM alpine:3.9 as alpine
 
 WORKDIR /tmp
 
-RUN apk add -U --no-cache wget ca-certificates
+RUN apk add -U wget ca-certificates
 RUN wget https://packages.redirection.io/dist/redirectionio-agent-latest_any_amd64.tar.gz
 RUN tar -xzvf redirectionio-agent-latest_any_amd64.tar.gz && mkdir -p /tmp/var/lib/redirectionio
 
@@ -12,14 +12,12 @@ FROM scratch
 COPY --from=alpine /tmp/redirection-agent/redirectionio-agent .
 
 # Configuration, can be replaced by your own
-COPY etc/redirectionio/agent.yml /etc/redirectionio/agent.yml
+COPY etc /etc
 
-# Root SSL Certificates, needed as we do https requests to our service
+# Root SSL Certificates, needed as we do HTTPS requests to our service
 COPY --from=alpine /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
 # Cache storage for rules
 VOLUME /var/lib/redirectionio
-
-EXPOSE 10301
 
 CMD ["/redirectionio-agent"]
