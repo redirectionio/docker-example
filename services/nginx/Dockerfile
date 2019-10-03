@@ -8,8 +8,8 @@ RUN apt update \
 # get nginx redirection.io module sources
 WORKDIR /tmp
 
-RUN wget https://github.com/redirectionio/libnginx-mod-redirectionio/archive/master.zip
-RUN unzip master.zip
+RUN wget https://github.com/redirectionio/libnginx-mod-redirectionio/archive/v0.5.0.zip
+RUN unzip v0.5.0.zip
 
 # get nginx sources
 WORKDIR /root
@@ -26,7 +26,7 @@ WORKDIR /root/nginx
 
 RUN NGINX_CONFIGURE_ARGUMENTS=`nginx -V 2>&1 | grep 'configure arguments:' | cut -d\  -f3-` && \
     NGINX_MODULES_PATH=`nginx -V 2>&1 | gawk 'match($0,/--modules-path=(\S+?)/,a) {print a[1]}'` && \
-    eval "./configure $NGINX_CONFIGURE_ARGUMENTS --add-dynamic-module=/tmp/libnginx-mod-redirectionio-master" && \
+    eval "./configure $NGINX_CONFIGURE_ARGUMENTS --add-dynamic-module=/tmp/libnginx-mod-redirectionio-0.5.0" && \
     make -j modules && \
     cp objs/ngx_http_redirectionio_module.so $NGINX_MODULES_PATH/ngx_http_redirectionio_module.so
 

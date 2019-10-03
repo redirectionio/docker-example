@@ -22,6 +22,8 @@ It is quite common to use Docker in development or production environments. As t
 	docker-compose up -d
 	```
 
+Head to [http://localhost:8080/](http://localhost:8080/).
+
 ## Explanations
 
 The `service` directory contains two services:
