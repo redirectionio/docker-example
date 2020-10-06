@@ -13,6 +13,7 @@ It is quite common to use Docker in development or production environments. As t
 	```nginx
 	redirectionio_project_key PUT HERE YOUR PROJECT KEY;
 	```
+   The `project key` can be found on the "Instances" screen of your project: simply click on "Setup on your infrastructure".
  * build the infrastructure:
 	```sh
 	docker-compose build
