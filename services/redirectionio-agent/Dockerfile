@@ -1,9 +1,9 @@
-FROM alpine:3.9 as alpine
+FROM alpine:3.12 as alpine
 
 WORKDIR /tmp
 
 RUN apk add --no-cache wget ca-certificates
-RUN wget https://packages.redirection.io/dist/redirectionio-agent-latest_any_amd64.tar.gz
+RUN wget https://packages.redirection.io/dist/beta/2/any/redirectionio-agent-latest_any_amd64.tar.gz
 RUN tar -xzvf redirectionio-agent-latest_any_amd64.tar.gz && mkdir -p /tmp/var/lib/redirectionio
 
 FROM scratch

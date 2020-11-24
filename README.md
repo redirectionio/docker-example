@@ -44,7 +44,8 @@ redirection.io offers APT and RPM repositories, with many versions of `libnginx-
 
 This is what the [nginx Dockerfile](./services/nginx/Dockerfile) achieves. Basically:
  * it downloads the nginx sources in the same version like the installed `nginx` binary
- * it download the redirection.io nginx module
+ * it downloads and build the libredirectionio
+ * it downloads the redirection.io nginx module
  * it builds this module with the same configure arguments the installed `nginx` binary was configured
  * it moves the build module in the right folder
  * it [loads the module](./services/nginx/etc/nginx/nginx.conf#L8) in the nginx configuration
