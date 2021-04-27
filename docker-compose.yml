@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+    nginx:
+        build: ./services/nginx
+        ports:
+            - "8080:80"
+        volumes:
+            - ./app:/var/www
+    redirectionio-agent:
+        build: ./services/redirectionio-agent
+        ports:
+            - "10301:10301"
