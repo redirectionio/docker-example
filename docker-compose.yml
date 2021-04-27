@@ -7,6 +7,12 @@ services:
             - "8080:80"
         volumes:
             - ./app:/var/www
+    nginx-compiled:
+        build: ./services/nginx-compiled
+        ports:
+            - "8081:80"
+        volumes:
+            - ./app:/var/www
     redirectionio-agent:
         build: ./services/redirectionio-agent
         ports:
