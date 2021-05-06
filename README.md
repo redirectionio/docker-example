@@ -47,7 +47,7 @@ The agent is installed using our [manual installation](https://redirection.io/do
 
 This is a standard Ubuntu 20.04 image, with the distribution-provided nginx package, and [libnginx-mod-redirectionio installed from our deb repository, as explained in our documentation](https://redirection.io/documentation/developer-documentation/nginx-module#debian-and-apt-based-distributions).
 
-It defines a single VirtualHost, [for which redirection is enabled](./services/nginx/etc/nginx/sites-enabled/default#L8-9).
+It defines a single VirtualHost, [for which redirection is enabled](./services/nginx/etc/nginx/sites-enabled/default#L8-L9).
 
 ### nginx-compiled
 
@@ -61,8 +61,8 @@ This is what the [nginx Dockerfile](./services/nginx-compiled/Dockerfile) achiev
  * it downloads the redirection.io nginx module
  * it builds this module with the same configure arguments the installed `nginx` binary was configured
  * it moves the build module in the right folder
- * it [loads the module](./services/nginx/etc/nginx-compiled/nginx.conf#L7) in the nginx configuration
- * it [enables redirection.io for the server](./services/nginx-compiled/etc/nginx/nginx.conf#L34-35)
+ * it [loads the module](./services/nginx-compiled/etc/nginx/nginx.conf#L7) in the nginx configuration
+ * it [enables redirection.io for the server](./services/nginx-compiled/etc/nginx/nginx.conf#L34-L35)
 
 ## Help and troubleshooting
 
