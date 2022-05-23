@@ -1,5 +1,8 @@
 version: '3'
 
+volumes:
+    redirectionio-agent-data: {}
+
 services:
     nginx:
         build: services/nginx
@@ -15,3 +18,5 @@ services:
             - ./app:/var/www
     redirectionio-agent:
         build: services/redirectionio-agent
+        volumes:
+            - redirectionio-agent-data:/var/lib/redirectionio
