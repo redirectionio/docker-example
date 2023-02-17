@@ -39,7 +39,7 @@ RUN NGINX_VERSION=`nginx -v 2>&1 | gawk 'match($0,/nginx version: nginx\/([0-9\.
 # install Rust
 ENV RUSTUP_HOME=/opt/rust
 ENV CARGO_HOME=/opt/rust
-RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain 1.64.0 -y --no-modify-path
+RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain 1.67.1 -y --no-modify-path
 ENV PATH=/opt/rust/bin:$PATH
 RUN mkdir -p /opt/rust/registry
 
