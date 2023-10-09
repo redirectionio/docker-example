@@ -21,11 +21,11 @@ of a Docker stack for the redirection.io agent and nginx module.
    simply click on "Setup on your infrastructure".
  * build the infrastructure:
     ```sh
-    docker-compose build
+    docker compose build
     ```
  * run it:
     ```sh
-    docker-compose up -d
+    docker compose up -d
     ```
 
 Head to:
