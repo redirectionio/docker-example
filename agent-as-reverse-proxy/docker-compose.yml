@@ -1,0 +1,22 @@
+version: '3'
+
+volumes:
+    redirectionio-agent-data: {}
+
+services:
+    redirectionio-agent:
+        build: services/redirectionio-agent
+        env_file: "../.env"
+        environment:
+            - INSTANCE_NAME=docker-reverse-proxy
+        ports:
+            - "8080:80"
+        volumes:
+            - redirectionio-agent-data:/var/lib/redirectionio
+
+    # this is the application backend service
+    # it can be any other HTTP service
+    nginx:
+        image: nginx
+        volumes:
+            - ../app:/usr/share/nginx/html

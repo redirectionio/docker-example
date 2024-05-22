@@ -1,0 +1,8 @@
+server {
+    listen       80;
+    listen  [::]:80;
+    root /var/www;
+
+    redirectionio_pass redirectionio-agent:10301;
+    redirectionio_project_key "${REDIRECTIONIO_PROJECT_KEY}";
+}

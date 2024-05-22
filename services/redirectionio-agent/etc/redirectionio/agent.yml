@@ -1,3 +1,0 @@
-instance_name: "redirectionio-nginx-docker-demo"
-
-listen: 0.0.0.0:10301
