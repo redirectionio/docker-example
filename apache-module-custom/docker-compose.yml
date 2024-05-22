@@ -13,6 +13,7 @@ services:
             - ../app:/usr/local/apache2/htdocs
     redirectionio-agent:
         build: services/redirectionio-agent
+        env_file: "../.env"
         environment:
             - INSTANCE_NAME=docker-apache-custom
         volumes:

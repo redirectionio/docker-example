@@ -1,3 +1,8 @@
 instance_name: "${INSTANCE_NAME}"
 
 listen: 0.0.0.0:10301
+
+# Keys of projects to preload
+# This allows to preload the agent with some projects rulesets at startup time
+project_keys:
+  - "${REDIRECTIONIO_PROJECT_KEY}"

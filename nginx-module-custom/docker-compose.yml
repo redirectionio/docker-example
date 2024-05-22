@@ -13,6 +13,7 @@ services:
             - ../app:/var/www
     redirectionio-agent:
         build: services/redirectionio-agent
+        env_file: "../.env"
         environment:
             - INSTANCE_NAME=docker-nginx-custom
         volumes:
