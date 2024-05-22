@@ -5,7 +5,7 @@ use Castor\Attribute\AsTask;
 use function Castor\context;
 use function Castor\finder;
 use function Castor\fs;
-use function Castor\http_request;
+use function Castor\request;
 use function Castor\io;
 use function Castor\run;
 
@@ -139,7 +139,7 @@ function example(string $example): void
 
 function assertResponse(string $url, int $expectedStatusCode): bool
 {
-    $response = http_request('GET', 'http://127.0.0.1:8080' . $url, [
+    $response = request('GET', 'http://127.0.0.1:8080' . $url, [
         'max_redirects' => 0,
     ]);
 
