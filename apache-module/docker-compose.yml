@@ -1,0 +1,20 @@
+version: '3'
+
+volumes:
+    redirectionio-agent-data: {}
+
+services:
+    apache:
+        build: services/apache
+        env_file: "../.env"
+        ports:
+            - "8080:80"
+        volumes:
+            - ../app:/var/www
+    redirectionio-agent:
+        build: services/redirectionio-agent
+        env_file: "../.env"
+        environment:
+            - INSTANCE_NAME=docker-apache
+        volumes:
+            - redirectionio-agent-data:/var/lib/redirectionio
