@@ -1,0 +1,7 @@
+instance_name: "${INSTANCE_NAME}"
+
+proxies:
+  -
+      listen: 0.0.0.0:80
+      forward: http://nginx:80
+      project_key: "${REDIRECTIONIO_PROJECT_KEY}"
