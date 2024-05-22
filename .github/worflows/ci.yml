@@ -1,0 +1,29 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  schedule:
+    - cron: "0 0 * * MON"
+
+jobs:
+  run-examples:
+    name: Run all examples
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+          tools: castor
+
+      - name: Setup .env
+        run: "echo 'REDIRECTIONIO_PROJECT_KEY=${{ secrets.REDIRECTIONIO_PROJECT_KEY }}' > $GITHUB_WORKSPACE/.env"
+
+      - name: Build and run all examples
+        run: castor run
