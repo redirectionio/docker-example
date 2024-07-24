@@ -1,4 +1,4 @@
-FROM alpine:3.19 as alpine
+FROM alpine:3.19 AS alpine
 
 WORKDIR /tmp
 
