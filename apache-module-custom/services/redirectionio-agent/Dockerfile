@@ -1,9 +1,9 @@
-FROM alpine:3.19 AS alpine
+FROM alpine:3.24 AS alpine
 
 WORKDIR /tmp
 
 RUN apk add --no-cache wget ca-certificates \
-    && wget https://packages.redirection.io/dist/stable/2/any/redirectionio-agent-latest_any_amd64.tar.gz \
+    && wget https://packages.redirection.io/dist/stable/3/any/redirectionio-agent-latest_any_amd64.tar.gz \
     && tar -xzvf redirectionio-agent-latest_any_amd64.tar.gz
 
 FROM scratch

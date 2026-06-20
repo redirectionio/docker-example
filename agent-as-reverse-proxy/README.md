@@ -15,4 +15,4 @@ The `docker-compose.yml` file also mentions a `nginx` service, which is a simple
 
 ### redirectionio-agent
 
-The agent is installed using our [manual installation](https://redirection.io/documentation/developer-documentation/installation-of-the-agent#manual-installation) instructions. Note that we have enabled a `/var/lib/redirectionio` volume, used to store [redirection.io agent's cache data](https://redirection.io/documentation/developer-documentation/agent-configuration-reference#datadir).
+The agent is installed using our [manual installation](https://redirection.io/documentation/developer-documentation/installation-of-the-agent#manual-installation) instructions. Note that we have enabled a `/var/lib/redirectionio` volume, used to store [redirection.io agent's persisted data](https://redirection.io/documentation/developer-documentation/agent-configuration-reference#persist).

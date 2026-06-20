@@ -11,17 +11,17 @@ This example shows how to use the pre-compiled redirection.io nginx module provi
 
 The `service` directory contains two services:
 
- * **nginx**: a nginx Dockerfile based on the Ubuntu 24.04 image, with nginx and the redirection.io nginx module installed from our apt repository
+ * **nginx**: a nginx Dockerfile based on the Debian Trixie image, with nginx and the redirection.io nginx module installed from our apt repository
  * **redirectionio-agent**: a simple Dockerfile to get the agent running
 
 ![The redirection.io nginx module](../app/nginx-module.png)
 
 ### nginx
 
-This is a standard Ubuntu 24.04 image, with the distribution-provided nginx package, and [libnginx-mod-redirectionio installed from our deb repository, as explained in our documentation](https://redirection.io/documentation/developer-documentation/nginx-module#debian-and-apt-based-distributions).
+This is a standard Debian Trixie image, with the distribution-provided nginx package, and [libnginx-mod-redirectionio installed from our deb repository, as explained in our documentation](https://redirection.io/documentation/developer-documentation/nginx-module#debian-and-apt-based-distributions).
 
 It defines a single VirtualHost, [for which redirection is enabled](./services/nginx/default.template#L8-L9).
 
 ### redirectionio-agent
 
-The agent is installed using our [manual installation](https://redirection.io/documentation/developer-documentation/installation-of-the-agent#manual-installation) instructions. Note that we have enabled a `/var/lib/redirectionio` volume, used to store [redirection.io agent's cache data](https://redirection.io/documentation/developer-documentation/agent-configuration-reference#datadir).
+The agent is installed using our [manual installation](https://redirection.io/documentation/developer-documentation/installation-of-the-agent#manual-installation) instructions. Note that we have enabled a `/var/lib/redirectionio` volume, used to store [redirection.io agent's persisted data](https://redirection.io/documentation/developer-documentation/agent-configuration-reference#persist).

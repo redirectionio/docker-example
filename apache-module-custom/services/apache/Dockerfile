@@ -9,7 +9,6 @@ RUN apt update \
         gawk \
         libgd-dev \
         libgeoip-dev \
-        libpcre3-dev \
         libperl-dev \
         libssl-dev \
         libxml2-dev \
@@ -25,7 +24,7 @@ RUN apt update \
 # install Rust
 ENV RUSTUP_HOME=/opt/rust
 ENV CARGO_HOME=/opt/rust
-RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain 1.94.0 -y --no-modify-path
+RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y --no-modify-path
 ENV PATH=/opt/rust/bin:$PATH
 RUN mkdir -p /opt/rust/registry
 

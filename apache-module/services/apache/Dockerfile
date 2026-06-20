@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM debian:trixie-slim
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y \
@@ -14,7 +14,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
 
 RUN mkdir -p /etc/apt/keyrings \
     && wget -qO- https://packages.redirection.io/gpg.key | tee /etc/apt/keyrings/redirectionio-archive-keyring.asc \
-    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/redirectionio-archive-keyring.asc] https://packages.redirection.io/deb/stable/2 jammy main" | tee -a /etc/apt/sources.list.d/packages_redirection_io_deb.list \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/redirectionio-archive-keyring.asc] https://packages.redirection.io/deb/stable/3 trixie main" | tee -a /etc/apt/sources.list.d/packages_redirection_io_deb.list \
     && apt-get update \
     && apt-get install -y \
         libapache2-mod-redirectionio \
