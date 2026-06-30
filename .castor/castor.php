@@ -52,7 +52,7 @@ function build(
 
     io()->title("Building example: $example");
 
-    run('docker compose build', workingDirectory: $example);
+    run('docker compose build', context: context()->withWorkingDirectory($example));
 }
 
 #[AsTask(description: 'Start the given example')]
@@ -63,7 +63,7 @@ function start(
 {
     io()->title("Starting example: $example");
 
-    run('docker compose up -d', workingDirectory: $example);
+    run('docker compose up -d', context: context()->withWorkingDirectory($example));
 
     sleep(2);
 }
@@ -106,10 +106,13 @@ function stop(
 
     io()->title("Stopping example: $example");
 
-    run('docker compose stop', workingDirectory: $example, allowFailure: true);
+    run('docker compose stop', context: context()->withWorkingDirectory($example)->withAllowFailure());
 }
 
-function get_examples(): iterable
+/**
+ * @return string[]
+ */
+function get_examples(): array
 {
     /** @var Symfony\Component\Finder\Finder $examples */
     $examples = finder()
@@ -120,9 +123,14 @@ function get_examples(): iterable
         ->sortByName()
     ;
 
+    // Must return an array (not a generator): Symfony Console uses this both for
+    // the foreach loops and as the shell-completion source, which requires an array.
+    $names = [];
     foreach ($examples as $example) {
-        yield $example->getBasename();
+        $names[] = $example->getBasename();
     }
+
+    return $names;
 }
 
 function example(string $example): void
