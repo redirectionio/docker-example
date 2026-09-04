@@ -31,11 +31,11 @@ RUN mkdir -p /opt/rust/registry
 
 # get libredirectionio sources
 WORKDIR /tmp
-RUN wget -O libredirectionio-master.zip https://github.com/redirectionio/libredirectionio/archive/master.zip \
-    && unzip libredirectionio-master.zip
+RUN wget -O libredirectionio-main.zip https://github.com/redirectionio/libredirectionio/archive/main.zip \
+    && unzip libredirectionio-main.zip
 
 # build libredirectionio
-WORKDIR /tmp/libredirectionio-master
+WORKDIR /tmp/libredirectionio-main
 RUN autoreconf -i \
     && ./configure \
     && make clean \
@@ -44,8 +44,8 @@ RUN autoreconf -i \
 
 # get nginx redirection.io module sources
 WORKDIR /tmp
-RUN wget -O libnginx-mod-redirectionio-master.zip https://github.com/redirectionio/libnginx-mod-redirectionio/archive/master.zip \
-    && unzip libnginx-mod-redirectionio-master.zip
+RUN wget -O libnginx-mod-redirectionio-main.zip https://github.com/redirectionio/libnginx-mod-redirectionio/archive/main.zip \
+    && unzip libnginx-mod-redirectionio-main.zip
 
 # get nginx sources
 WORKDIR /root
@@ -59,9 +59,9 @@ RUN NGINX_VERSION=`nginx -v 2>&1 | gawk 'match($0,/nginx version: nginx\/([0-9\.
 # build the module
 WORKDIR /root/nginx
 
-RUN NGINX_CONFIGURE_ARGUMENTS=`nginx -V 2>&1 | grep 'configure arguments:' | cut -d\  -f3- | sed "s/ --with-cc-opt='/ --with-cc-opt='-I\/tmp\/libredirectionio-master\/target /" | sed "s/ --with-ld-opt='/ --with-ld-opt='-L\/tmp\/libredirectionio-master\/target\/release /"` \
+RUN NGINX_CONFIGURE_ARGUMENTS=`nginx -V 2>&1 | grep 'configure arguments:' | cut -d\  -f3- | sed "s/ --with-cc-opt='/ --with-cc-opt='-I\/tmp\/libredirectionio-main\/target /" | sed "s/ --with-ld-opt='/ --with-ld-opt='-L\/tmp\/libredirectionio-main\/target\/release /"` \
     && NGINX_MODULES_PATH=`nginx -V 2>&1 | gawk 'match($0,/--modules-path=(\S+?)/,a) {print a[1]}'` \
-    && eval "./configure $NGINX_CONFIGURE_ARGUMENTS --add-dynamic-module=/tmp/libnginx-mod-redirectionio-master" \
+    && eval "./configure $NGINX_CONFIGURE_ARGUMENTS --add-dynamic-module=/tmp/libnginx-mod-redirectionio-main" \
     && make -j modules \
     && cp objs/ngx_http_redirectionio_module.so $NGINX_MODULES_PATH/ngx_http_redirectionio_module.so
 

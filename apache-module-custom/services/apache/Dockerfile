@@ -30,11 +30,11 @@ RUN mkdir -p /opt/rust/registry
 
 # get libredirectionio sources
 WORKDIR /tmp
-RUN wget -O libredirectionio-master.zip https://github.com/redirectionio/libredirectionio/archive/master.zip \
-    && unzip libredirectionio-master.zip
+RUN wget -O libredirectionio-main.zip https://github.com/redirectionio/libredirectionio/archive/main.zip \
+    && unzip libredirectionio-main.zip
 
 # build libredirectionio
-WORKDIR /tmp/libredirectionio-master
+WORKDIR /tmp/libredirectionio-main
 RUN autoreconf -i \
     && ./configure \
     && make clean \
@@ -43,11 +43,11 @@ RUN autoreconf -i \
 
 # get apache2 redirection.io module sources
 WORKDIR /tmp
-RUN wget -O libapache2-mod-redirectionio-master.zip https://github.com/redirectionio/libapache2-mod-redirectionio/archive/master.zip \
-    && unzip libapache2-mod-redirectionio-master.zip
+RUN wget -O libapache2-mod-redirectionio-main.zip https://github.com/redirectionio/libapache2-mod-redirectionio/archive/main.zip \
+    && unzip libapache2-mod-redirectionio-main.zip
 
 # build the module
-WORKDIR /tmp/libapache2-mod-redirectionio-master
+WORKDIR /tmp/libapache2-mod-redirectionio-main
 RUN autoreconf -i \
     && ./configure \
     && make clean \
